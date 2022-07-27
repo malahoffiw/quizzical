@@ -9,12 +9,26 @@ export default function Start({toggleStatus, settings, setSettings}) {
             [name]: value,
         }))
     }
-    const optionsDifficulty = Object.entries(settingsOptions.difficulty)
-        .map((item, index) => <option key={index} value={item[0]}>{item[1]}</option>)
-    const optionsQuestionsAmount = settingsOptions.questionsAmount
-        .map((item, index) => <option key={index} value={item}>{item}</option>)
-    const optionsCategory = Object.entries(settingsOptions.category)
-        .map((item, index) => <option key={index} value={item[0]}>{item[1]}</option>)
+
+    const settingsLines = Object.keys(settingsOptions)
+        .map((line, i) => {
+            const optionsLine = Object.entries(settingsOptions[line])
+                .map((item, index) => <option key={index} value={item[0]}>{item[1]}</option>)
+
+            return (
+                <div key={i} className="settings-line">
+                    <label htmlFor={line}>Select {line}</label>
+                    <select
+                        name={line}
+                        id={line}
+                        value={settings[line]}
+                        onChange={handleChange}
+                    >
+                        {optionsLine}
+                    </select>
+                </div>
+            )
+        })
 
     return (
         <div className="start">
@@ -24,39 +38,7 @@ export default function Start({toggleStatus, settings, setSettings}) {
             </div>
             <hr/>
             <form>
-                <div className="settings-line">
-                    <label htmlFor="difficulty">Select difficulty</label>
-                    <select
-                        name="difficulty"
-                        id="difficulty"
-                        value={settings.difficulty}
-                        onChange={handleChange}
-                    >
-                        {optionsDifficulty}
-                    </select>
-                </div>
-                <div className="settings-line">
-                    <label htmlFor="questionsAmount">Select amount of questions</label>
-                    <select
-                        name="questionsAmount"
-                        id="questionsAmount"
-                        value={settings.questionsAmount}
-                        onChange={handleChange}
-                    >
-                        {optionsQuestionsAmount}
-                    </select>
-                </div>
-                <div className="settings-line">
-                    <label htmlFor="category">Select category</label>
-                    <select
-                        name="category"
-                        id="category"
-                        value={settings.category}
-                        onChange={handleChange}
-                    >
-                        {optionsCategory}
-                    </select>
-                </div>
+                {settingsLines}
             </form>
             <button className="start-btn" onClick={toggleStatus}>
                 Start quiz

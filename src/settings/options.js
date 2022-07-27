@@ -1,11 +1,17 @@
 const options = {
-    difficulty: {
+    "difficulty": {
         "easy": "Easy",
         "medium": "Medium",
         "hard": "Hard",
     },
-    questionsAmount: ["5", "10", "15", "20", "50"],
-    category: {
+    "questionsAmount": {
+        "5": "5",
+        "10": "10",
+        "15": "15",
+        "20": "20",
+        "50": "50"
+    },
+    "category": {
         "": "Any category",
         "9": "General knowledge",
         "10": "Books",

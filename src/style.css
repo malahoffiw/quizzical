@@ -153,11 +153,6 @@ button:hover {
     border-radius: 10px;
 }
 
-.tippy-box {
-    background-color: tomato;
-    color: yellow;
-}
-
 @media (max-width: 850px) {
     .question {
         width: 80vw;
