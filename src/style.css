@@ -129,8 +129,6 @@ button:hover {
 .false {
     background-color: #F8BCBC;
     border: 1px solid transparent;
-    opacity: 0.5;
-    transition: 0.3s ease-in-out;
 }
 
 .other {
