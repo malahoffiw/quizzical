@@ -11,6 +11,7 @@ export default function Quiz({toggleStatus, settings}) {
         fetch(getSrc(settings))
             .then(r => r.json())
             .then(data => setQuiz(parseQuizData(data.results)))
+            .catch(err => alert(err.stack))
     }, [settings])
 
     function collectAnswers() {
