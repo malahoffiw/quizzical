@@ -4,12 +4,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ---
-### Deployment 
-
-This project was deployed to GHPages - check it out [here](https://malahoffiw.github.io/quizzical/)
-
----
-Besides, you can clone this repository and run the app in the development mode:
+You can clone this repository and run the app in the development mode:
 
 `npm start`
 
