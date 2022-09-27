@@ -1,10 +1,12 @@
-import he from "he";
+import he from "he"
+import { Answer, QuestionType, QuestionData } from "../model"
 
-export default function parseQuizData(data) {
+export default function parseQuizData(data: QuestionData[]): QuestionType[] {
     return data.map((item, index) => {
-        let answers = item.incorrect_answers
+        const answers: string[] = item.incorrect_answers
         answers.splice(getRandomNumber(), 0, item.correct_answer)
-        answers = answers.map(answer => ({
+
+        const parsedAnswers: Answer[] = answers.map(answer => ({
             text: he.decode(answer),
             correct: answer === item.correct_answer,
             chosenCorr: false,
@@ -14,7 +16,7 @@ export default function parseQuizData(data) {
         return {
             id: index,
             question: he.decode(item.question),
-            answers: answers,
+            answers: parsedAnswers,
         }
     })
 }

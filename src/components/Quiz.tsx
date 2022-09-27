@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
-import Question from "./Question";
-import parseQuizData from "../utils/parseQuizData";
-import getSrc from "../utils/getSrc";
+import React, { useState, useEffect } from "react"
+import Question from "./Question"
+import parseQuizData from "../utils/parseQuizData"
+import getSrc from "../utils/getSrc"
+import { Settings, QuestionType } from "../model"
 
-export default function Quiz({toggleStatus, settings}) {
-    const [quiz, setQuiz] = useState([])
+type QuizProps = {
+    settings: Settings,
+    toggleStatus: React.MouseEventHandler<HTMLButtonElement> | undefined,
+}
+
+export default function Quiz({ toggleStatus, settings }: QuizProps) {
+    const [quiz, setQuiz] = useState<QuestionType[]>([])
     const [result, setResult] = useState(false)
 
     useEffect(() => {

@@ -1,19 +1,22 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import Start from "./components/Start"
 import Quiz from "./components/Quiz"
+import { Settings } from "./model"
+
+type Status = "start" | "quiz"
+const initialSettings = {
+    difficulty: "easy",
+    questionsAmount: "5"
+}
 
 function App() {
-    const [status, setStatus] = useState("start")
-    const [settings, setSettings] = useState({
-        difficulty: "easy",
-        questionsAmount: "5",
-        category: ""
-    })
+    const [status, setStatus] = useState<Status>("start")
+    const [settings, setSettings] = useState<Settings>(initialSettings)
 
     function toggleStatus() {
         setStatus(prevStatus => {
             if (prevStatus === "start") return "quiz"
-            if (prevStatus === "quiz") return "start"
+            return "start"
         })
     }
 

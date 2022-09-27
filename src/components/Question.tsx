@@ -1,7 +1,18 @@
-import React from "react";
+import React from "react"
+import { Answer, QuestionType } from "../model"
 
-export default function Question(props) {
-    function chooseAnswer(event) {
+type QuestionProps = {
+    questionId: number,
+    value: string,
+    answers: Answer[],
+    setQuiz: React.Dispatch<React.SetStateAction<QuestionType[]>>,
+    result: boolean,
+}
+
+export default function Question(props: QuestionProps) {
+    function chooseAnswer(event: React.MouseEvent<HTMLDivElement, MouseEvent> & {
+        target: HTMLDivElement
+    }) {
         const chosenId = Number(event.target.id)
 
         props.setQuiz(prevQuiz => prevQuiz.map(question => {
@@ -29,7 +40,6 @@ export default function Question(props) {
                         chosenFalse: false,
                     }
                 }
-
             })
 
             return {
@@ -42,7 +52,7 @@ export default function Question(props) {
     const answers = props.answers.map((answer, index) =>
         <div
             key={index}
-            id={index}
+            id={`${index}`}
             className={
                 `answers-option 
                 ${answer.chosenCorr || answer.chosenFalse ? "chosen" : ""}
